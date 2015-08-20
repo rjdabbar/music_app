@@ -9,11 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :notes
 
-  def self.generate_session_token
-    SecureRandom::urlsafe_base64(16)
-  end
-
-  def self.generate_activation_token
+  def self.generate_secure_token
     SecureRandom::urlsafe_base64(16)
   end
 
@@ -24,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.session_token = User.generate_session_token
+    self.session_token = User.generate_secure_token
     self.save!
     self.session_token
   end
@@ -42,8 +38,8 @@ class User < ActiveRecord::Base
     self.password_digest.is_password?(password)
   end
 
-  def activate
-    toggle(self.active)
+  def activate!
+    self.update!(active: true) if !activated?
   end
 
   def activated?
@@ -52,15 +48,15 @@ class User < ActiveRecord::Base
   private
 
   def ensure_session_token
-    self.session_token ||= User.generate_session_token
+    self.session_token ||= User.generate_secure_token
   end
 
   def ensure_activation_token
-    self.activation_token ||= User.generate_activation_token
+    self.activation_token ||= User.generate_secure_token
   end
 
   def set_new_users_to_inactive
-    self.active = false
+    self.active ||= false
   end
 
 end

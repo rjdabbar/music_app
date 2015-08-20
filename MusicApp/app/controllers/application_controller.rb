@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
   def ensure_user_signed_in
     redirect_to new_user_url unless signed_in?
   end
+
+  def ensure_user_is_activated
+    redirect_to user_url(current_user) unless current_user.activated?
+  end
 end

@@ -1,1 +1,7 @@
 <h1> <%= @user.email %> </h1>
+
+<% if @user.active  %>
+  <h2> Your account is: Activated </h2>
+<% else %>
+  <h2> Your account is: Not Activated. Please check your email to activate it!</h2>
+<% end %>

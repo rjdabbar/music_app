@@ -19,9 +19,11 @@ class UsersController < ApplicationController
   end
 
   def activate
-    @user = User.find(activation_token: params[:activation_token])
+    @user = User.find_by(activation_token: params[:activation_token])
     if @user
-      @user.activate
+      @user.activate!
+      sign_in!(@user)
+      redirect_to user_url(@user)
     else
       redirect_to new_user_url
     end

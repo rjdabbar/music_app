@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
   before_action :ensure_user_signed_in
+  skip_before_action :ensure_user_is_activated, only: [:index]
 
   def index
     @bands = Band.all

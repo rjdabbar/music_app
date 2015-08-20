@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true}
 
   after_initialize :ensure_session_token, :set_new_users_to_inactive,
-                  :ensure_activation_token
+                  :ensure_activation_token, :set_new_users_to_non_admins
 
   has_many :notes
 
@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
   def activated?
     self.active
   end
+
+  def admin?
+    self.admin
+  end
   private
 
   def ensure_session_token
@@ -57,6 +61,10 @@ class User < ActiveRecord::Base
 
   def set_new_users_to_inactive
     self.active ||= false
+  end
+
+  def set_new_users_to_non_admins
+    self.admin ||= false
   end
 
 end

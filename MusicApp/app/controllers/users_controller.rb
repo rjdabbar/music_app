@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+before_action :ensure_user_is_admin, only: :index
+
+  def index
+    @users = User.all
+  end
 
   def new
   end
@@ -33,5 +38,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def ensure_user_is_admin
+    redirect_to bands_url unless current_user.admin?
   end
 end

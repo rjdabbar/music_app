@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show] do
+  resources :users, only: [:new, :create, :show, :index] do
     member do
       get 'activate'
     end

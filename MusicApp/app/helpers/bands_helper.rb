@@ -27,4 +27,13 @@ module BandsHelper
       </form>
     HTML
   end
+
+  def add_new_band
+    <<-HTML.html_safe
+      <form action="#{new_band_url}" method="get">
+        #{form_auth_token}
+        <button>Add Band</button>
+      </form>
+    HTML
+  end
 end

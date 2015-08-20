@@ -18,4 +18,13 @@ module AlbumsHelper
       </form>
     HTML
   end
+
+  def add_new_track_to_album
+    <<-HTML.html_safe
+      <form action="#{new_album_track_url(@album)}" method="get">
+        #{form_auth_token}
+        <button>Add new track to album</button>
+      </form>
+    HTML
+  end
 end

@@ -1,14 +1,19 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :email, :session_token, :active, presence: true, uniqueness: true
+  validates :email, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true}
 
-  after_initialize :ensure_session_token, :set_new_users_to_inactive
+  after_initialize :ensure_session_token, :set_new_users_to_inactive,
+                  :ensure_activation_token
 
   has_many :notes
 
   def self.generate_session_token
+    SecureRandom::urlsafe_base64(16)
+  end
+
+  def self.generate_activation_token
     SecureRandom::urlsafe_base64(16)
   end
 
@@ -37,6 +42,10 @@ class User < ActiveRecord::Base
     self.password_digest.is_password?(password)
   end
 
+  def activate
+    toggle(self.active)
+  end
+
   def activated?
     self.active
   end
@@ -44,6 +53,10 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def ensure_activation_token
+    self.activation_token ||= User.generate_activation_token
   end
 
   def set_new_users_to_inactive

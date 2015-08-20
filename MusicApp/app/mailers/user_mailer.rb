@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
-  default from: "music@appacademy.io"
+  default from: "rjdabbar@gmail.com"
 
   def welcome_email(user)
     @user = user
-    @url = new_session_url
-    mail(to: user.email, subject: "Account requires activation")
+    @url = "http://localhost:3000/users/activate?activation_token=#{@user.activation_token}"
+    mail(to: user.email, subject: "Account requires activation  ")
   end
 end

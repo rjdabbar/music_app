@@ -18,4 +18,14 @@ module ApplicationHelper
       end.join
     end
   end
+
+  def sign_out_button
+    <<-HTML.html_safe
+      <form action="#{session_url}"method="post">
+        #{form_auth_token}
+        <input type="hidden" name="_method" value="delete">
+        <button>Sign Out</button>
+      </form>
+    HTML
+  end
 end

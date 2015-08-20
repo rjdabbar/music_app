@@ -1,4 +1,5 @@
 class BandsController < ApplicationController
+  before_action :ensure_user_signed_in
 
   def index
     @bands = Band.all
@@ -50,5 +51,9 @@ class BandsController < ApplicationController
 
   def gather_band_errors
     flash.now[:errors] = @band.errors.full_messages
+  end
+
+  def ensure_user_signed_in
+    redirect_to new_session_url unless signed_in?
   end
 end

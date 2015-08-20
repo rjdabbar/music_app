@@ -8,6 +8,11 @@
 </head>
 <body>
 <a href="<%= bands_url %>">All Bands</a>
+<br>
+
+<% if signed_in? %>
+  <%= sign_out_button %>
+<% end %>
 <%= yield %>
 
 </body>

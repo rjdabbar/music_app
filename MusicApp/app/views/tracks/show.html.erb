@@ -4,9 +4,10 @@
   <h2>Lyrics</h2>
   <%= @track.lyrics %>
   <h2>Notes about this track:</h2>
+  <%= render "notes/form" %>
   <ul>
     <% @track.notes.each do |note| %>
-      <li> <a href="<%= note_url(note)%> ">Note</a> by: <%= note.user %> </li>
+      <li> <a href="<%= note_url(note)%> ">Note</a> by: <%= note.user.email %>  <%= delete_note(note) %></li>
     <% end %>
   </ul>
 <%= edit_track %>

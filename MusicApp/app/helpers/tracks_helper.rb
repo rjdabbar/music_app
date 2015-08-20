@@ -1,5 +1,6 @@
 module TracksHelper
   include ERB::Util
+
   def delete_track
     <<-HTML.html_safe
       <form action="#{track_url(@track)}" method="post">
@@ -18,7 +19,6 @@ module TracksHelper
       </form>
     HTML
   end
-
 
   def ugly_lyrics(lyrics)
     <<-HTML.html_safe

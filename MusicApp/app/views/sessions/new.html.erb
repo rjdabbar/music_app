@@ -2,19 +2,6 @@
 
   <%= flash_errors %>
 <form action="<%= session_url %>" method="post">
-  <%= form_auth_token %>
-
-  <label for="user_email">Email:</label>
-  <input id="user_email"
-         type="textarea"
-         name="user[email]"
-         value="example@email.com">
-  <br>
-  <label for="user_password">Password</label>
-  <input id="user_password"
-         type="password"
-         name="user[password]"
-         value="">
-  <br>
+  <%= render "partials/user_form" %>
   <button name="Sign In">Sign in!</button>
 </form>

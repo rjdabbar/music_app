@@ -38,7 +38,6 @@ class AlbumsController < ApplicationController
     redirect_to band_url(@album.band)
   end
 
-
   private
 
   def album_params

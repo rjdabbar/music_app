@@ -1,6 +1,5 @@
 module NotesHelper
 
-
   def delete_note(note)
     <<-HTML.html_safe
       <form action="#{note_url}" method="post">

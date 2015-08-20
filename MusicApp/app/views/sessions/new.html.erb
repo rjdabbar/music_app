@@ -2,6 +2,7 @@
 
   <%= flash_errors %>
 <form action="<%= session_url %>" method="post">
+  <%= form_auth_token %>
   <%= render "partials/user_form" %>
   <button name="Sign In">Sign in!</button>
 </form>

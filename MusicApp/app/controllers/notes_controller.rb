@@ -16,7 +16,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note = Note.find(params[:note][:id])
+    @note = Note.find(params[:id])
     if current_user != @note.user
       render status: :forbidden, text: "YOU ARE FORBIDDEN"
     else
@@ -33,9 +33,5 @@ class NotesController < ApplicationController
 
   def gather_note_errors
     flash.now[:errors] = @note.errors.full_messages
-  end
-
-  def ensure_user_signed_in
-    redirect_to new_user_url unless signed_in?
   end
 end

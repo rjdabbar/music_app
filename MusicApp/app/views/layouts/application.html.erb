@@ -13,9 +13,10 @@
   <a href="<%= bands_url %>">All Bands</a>
   <%= sign_out_button %>
 <% else %>
-  <%= sign_in_button %>
-  <%= sign_up_button %>
+  <a href="<%= new_user_url %>">Sign Up</a>
+  <a href="<%= new_session_url %>">Sign In</a
 <% end %>
+<br>
 <%= yield %>
 
 </body>

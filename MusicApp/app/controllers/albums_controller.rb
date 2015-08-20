@@ -47,8 +47,4 @@ class AlbumsController < ApplicationController
   def gather_album_errors
     flash.now[:errors] = @album.errors.full_messages
   end
-
-  def ensure_user_signed_in
-    redirect_to new_user_url unless signed_in?
-  end
 end

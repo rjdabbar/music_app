@@ -3,6 +3,6 @@
 
 <form action="<%= albums_url %>" method="post">
   <%= form_auth_token %>
-  <%= render "partials/album_form" %>
+  <%= render partial: "partials/album_form", locals: { album: @album } %>
   <button>Create Album</button>
 </form>

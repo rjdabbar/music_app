@@ -16,7 +16,7 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find(params[:id])
+    @track = Track.includes(:notes).find(params[:id])
     @note = Note.new
   end
 
@@ -49,9 +49,5 @@ class TracksController < ApplicationController
 
   def gather_track_errors
     flash.now[:errors] = @track.errors.full_messages
-  end
-
-  def ensure_user_signed_in
-    redirect_to new_user_url unless signed_in?
   end
 end

@@ -4,7 +4,7 @@
   <option value=""> </option>
   <% Band.all.each do |band| %>
     <option value="<%= band.id %>"
-      <%= "selected" if band == @album.band %>>
+      <%= "selected" if band == album.band %>>
       <%= band.name %>
     </option>
   <% end %>
@@ -14,7 +14,7 @@
 <input id="album_name"
        type="textarea"
        name="album[name]"
-       value="<%= @album.name %>">
+       value="<%= album.name %>">
 
 <br>
 <label for="album_style">Styles:</label>
@@ -24,12 +24,12 @@
        type="radio"
        name="album[style]"
        value="live"
-   <%= "checked" if @album.style == "live" %>>
+   <%= "checked" if album.style == "live" %>>
 <br>
 <label for="album_style_studio">Studio:</label>
 <input id="album_style_studio"
        type="radio"
        name="album[style]"
        value="studio"
-   <%= "checked" if @album.style == "studio" %>>
+   <%= "checked" if album.style == "studio" %>>
 <br>

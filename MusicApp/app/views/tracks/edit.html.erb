@@ -3,6 +3,6 @@
 
 <form class="" action="<%= track_url %>" method="post">
   <input type="hidden" name="_method" value="patch">
-  <%= render "partials/track_form" %>
+  <%= render partial: "partials/track_form", locals: { track: @track } %>
   <button>Edit Track</button>
 </form>

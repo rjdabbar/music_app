@@ -2,6 +2,6 @@
 
 <form class="" action="<%= band_url(@band) %>" method="post">
   <input type="hidden" name="_method" value="patch">
-   <%= render "partials/band_form" %>
+   <%= render partial: "partials/band_form", locals: { band: @band } %>
  <button>Edit Band</button>
  </form>

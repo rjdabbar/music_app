@@ -17,7 +17,7 @@ class BandsController < ApplicationController
     if @band.save
       redirect_to band_url(@band)
     else
-      flash.now[:errors] = @band.errors.full_messages
+      gather_band_errors
       render :new
     end
   end
@@ -29,16 +29,26 @@ class BandsController < ApplicationController
   end
 
   def edit
-
+    @band = Band.find(params[:id])
   end
 
   def update
-
+    @band = Band.find(params[:id])
+    if @band.update(band_params)
+      redirect_to band_url(@band)
+    else
+      gather_band_errors
+      render :edit
+    end
   end
 
   private
 
   def band_params
     params.require(:band).permit(:name)
+  end
+
+  def gather_band_errors
+    flash.now[:errors] = @band.errors.full_messages
   end
 end

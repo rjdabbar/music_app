@@ -1,11 +1,4 @@
 <h1>Create a new band!</h1>
   <%= flash_errors %>
   <form class="" action="<%= bands_url %>" method="post">
-    <%= form_auth_token %>
-    <label for="band_name">Band Name:</label>
-    <input id="band_name"
-           type="textarea"
-           name="band[name]"
-           value="">
-    <button>Create Band</button>
-  </form>
+    <%= render "band_form" %>

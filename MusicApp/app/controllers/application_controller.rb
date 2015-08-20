@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in!(user)
+    
   end
 
   def sign_out!

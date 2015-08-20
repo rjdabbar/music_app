@@ -1,7 +1,8 @@
 <h1>Sign up!</h1>
 
-<form action="<%= new_user_url %>" method="post">
-  <% form_auth_token %>
+  <%= flash_errors %>
+<form action="<%= users_url %>" method="post">
+  <%= form_auth_token %>
 
   <label for="user_email">Email:</label>
   <input id="user_email"
@@ -15,5 +16,5 @@
          name="user[password]"
          value="">
   <br>
-  <button name="Sign In">Sign up!</button>
+  <button name="Sign up">Sign up!</button>
 </form>

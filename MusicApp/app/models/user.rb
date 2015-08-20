@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :email, :session_token, presence: true, uniqueness: true
+  validates :email, :session_token, :active, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true}
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :set_new_users_to_inactive
 
   has_many :notes
 
@@ -37,10 +37,17 @@ class User < ActiveRecord::Base
     self.password_digest.is_password?(password)
   end
 
+  def activated?
+    self.active
+  end
   private
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def set_new_users_to_inactive
+    self.active = false
   end
 
 end

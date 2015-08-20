@@ -1,6 +1,8 @@
 <h1> <%= @track.title %> </h1>
 
 <h2>This track is on the album: <a href=" <%= album_url(@track.album) %> "> <%= @track.album.name %> </a></h2>
+  <h2>Lyrics</h2>
+  <%= @track.lyrics %>
   <h2>Notes about this track:</h2>
   <ul>
     <% @track.notes.each do |note| %>

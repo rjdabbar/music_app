@@ -1,0 +1,11 @@
+<ul>
+  <% @track.notes.each do |note| %>
+    <li>
+      <%= note.text %>
+      by:
+      <%= note.user.email %>
+      <% if current_user == note.user %>
+        <%= delete_note(note) %></li>
+      <% end %>
+  <% end %>
+</ul>

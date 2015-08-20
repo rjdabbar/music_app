@@ -7,11 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<a href="<%= bands_url %>">All Bands</a>
-<br>
+
 
 <% if signed_in? %>
+  <a href="<%= bands_url %>">All Bands</a>
   <%= sign_out_button %>
+<% else %>
+  <%= sign_in_button %>
+  <%= sign_up_button %>
 <% end %>
 <%= yield %>
 

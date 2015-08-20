@@ -28,4 +28,22 @@ module ApplicationHelper
       </form>
     HTML
   end
+
+  def sign_in_button
+    <<-HTML.html_safe
+      <form action="#{new_session_url}" method="get">
+        #{form_auth_token}
+        <button>Sign in!</button>
+      </form>
+    HTML
+  end
+
+  def sign_up_button
+    <<-HTML.html_safe
+      <form action="#{new_user_url}" method="get">
+        #{form_auth_token}
+        <button>Sign up!</button>
+      </form>
+    HTML
+  end
 end

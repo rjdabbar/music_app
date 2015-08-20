@@ -21,9 +21,11 @@
 <br>
 
 <label for="track_lyrics">Lyrics:</label>
-<input type="textarea"
-       name="track[lyrics]"
-       value="<%= @track.lyrics %>">
+<textarea id="track_lyrics"
+          name="track[lyrics]"
+          rows="8"
+          cols="40"><%= @track.lyrics %>
+</textarea>
 
 <label for="track_style">Styles:</label>
 <label for="track_style_bonus">Bonus:</label>

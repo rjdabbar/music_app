@@ -18,4 +18,11 @@ module TracksHelper
       </form>
     HTML
   end
+
+
+  def ugly_lyrics(lyrics)
+    <<-HTML.html_safe
+    #{h(lyrics).split("\r\n").map { |line| "&#9835;" + line}.join("<br>")}
+    HTML
+  end
 end

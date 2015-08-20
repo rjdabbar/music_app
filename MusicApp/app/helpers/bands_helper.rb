@@ -18,4 +18,13 @@ module BandsHelper
     </form>
     HTML
   end
+
+  def add_new_album_to_band
+    <<-HTML.html_safe
+      <form action="#{new_band_album_url(@band)}" method="get">
+        #{form_auth_token}
+        <button>Add new album</button>
+      </form>
+    HTML
+  end
 end

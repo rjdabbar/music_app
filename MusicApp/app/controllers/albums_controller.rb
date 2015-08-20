@@ -7,7 +7,6 @@ class AlbumsController < ApplicationController
   def new
     @bands = Band.all
     @band = Band.find(params[:band_id])
-
   end
 
   def create
@@ -21,7 +20,9 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-
+    @album = Album.find(params[:id])
+    @band = @album.band
+    @bands = Band.all
   end
 
   def update

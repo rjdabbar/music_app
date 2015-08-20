@@ -9,4 +9,13 @@ module AlbumsHelper
       </form>
     HTML
   end
+
+  def edit_album
+    <<-HTML.html_safe
+      <form action="#{edit_album_url(@album)}" method="get">
+        #{form_auth_token}
+        <button>Edit Album</button>
+      </form>
+    HTML
+  end
 end

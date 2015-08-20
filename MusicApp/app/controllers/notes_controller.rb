@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :ensure_user_signed_in
+  before_action :ensure_user_signed_in, :ensure_user_is_activated
 
   def new
     @note = Note.new

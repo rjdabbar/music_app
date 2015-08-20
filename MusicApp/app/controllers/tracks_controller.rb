@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :ensure_user_signed_in
+  before_action :ensure_user_signed_in, :ensure_user_is_activated
 
   def new
     @track = Track.new(album_id: params[:album_id])

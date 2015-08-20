@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :ensure_user_signed_in
+  before_action :ensure_user_signed_in, :ensure_user_is_activated
   def show
     @album = Album.includes(:tracks, :band).find(params[:id])
   end

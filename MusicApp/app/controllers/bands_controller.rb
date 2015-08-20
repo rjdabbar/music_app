@@ -24,7 +24,7 @@ class BandsController < ApplicationController
 
   def destroy
     @band = Band.find(params[:id])
-    Band.delete(@band)
+    @band.destroy!
     redirect_to bands_url
   end
 

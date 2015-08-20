@@ -1,45 +1,8 @@
 <h1>Edit <%= @album.name %> </h1>
 <%= flash_errors %>
 
-<form action="<%= albums_url %>" method="post">
-
-  <input type="hidden" name="_method" value="patch">
-  <%= form_auth_token %>
-
-  <label for="album_band">Band:</label>
-  <select id="album_band" name="album[band_id]">
-    <option value=""> </option>
-    <% @bands.each do |band| %>
-      <option value="<%= band.id %>"
-        <%= "selected" if band == @band %>>
-        <%= band.name %>
-      </option>
-    <% end %>
-  </select>
-  <br>
-  <label for="album_name">Album Name:</label>
-  <input id="album_name"
-         type="textarea"
-         name="album[name]"
-         value="<%= @album.band.name %>">
-
-  <br>
-
-  <label for="album_style">Styles:</label>
-  <br>
-  <label for="album_style_live">Live:</label>
-  <input id="album_style_live"
-         type="radio"
-         name="album[style]"
-         value="live"
-     <%= "checked" if @album.style == "live" %>>
-  <br>
-  <label for="album_style_studio">Studio:</label>
-  <input id="album_style_studio"
-         type="radio"
-         name="album[style]"
-         value="studio"
-     <%= "checked" if @album.style == "studio" %>>
-  <br>
-  <button>Edit Album</button>
+<form action="<%= album_url(@album) %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <%= render "album_form" %>
+    <button>Edit Album</button>
 </form>

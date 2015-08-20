@@ -1,6 +1,7 @@
 class TracksController < ApplicationController
 
   def new
+    @track = Track.new
     @album = Album.find(params[:album_id])
     @albums = Album.all
   end
@@ -10,7 +11,7 @@ class TracksController < ApplicationController
     if @track.save
       redirect_to track_url(@track)
     else
-      flash.now[:errors] = @track.errors.full_messages
+      gather_track_errors
       render :new
     end
   end
@@ -26,17 +27,29 @@ class TracksController < ApplicationController
   end
 
   def edit
-
+    @track = Track.find(params[:id])
+    @album = @track.album
+    @albums = Albums.all
   end
 
   def update
-
+    @track = Track.find(params[:id])
+    if @track.update(track_params)
+      redirect_to track_url(@track)
+    else
+      gather_track_errors
+      render :edit
+    end
   end
 
   private
 
   def track_params
       params.require(:track).permit(:album_id, :title, :style)
+  end
+
+  def gather_track_errors
+    flash.now[:errors] = @track.errors.full_messages
   end
 
 end

@@ -5,6 +5,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
+    @album = Album.new
     @bands = Band.all
     @band = Band.find(params[:band_id])
   end
@@ -14,7 +15,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to album_url(@album)
     else
-      flash.now[:errors] = @album.errors.full_messages
+      gather_album_errors
       render :new
     end
   end
@@ -26,7 +27,13 @@ class AlbumsController < ApplicationController
   end
 
   def update
-
+    @album = Album.find(params[:id])
+    if @album.update(album_params)
+      redirect_to album_url(@album)
+    else
+      gather_album_errors
+      render :edit
+    end
   end
 
   def destroy
@@ -42,7 +49,7 @@ class AlbumsController < ApplicationController
     params.require(:album).permit(:name, :style, :band_id)
   end
 
-  def current_band
-
+  def gater_album_errors
+    flash.now[:errors] = @album.errors.full_messages
   end
 end

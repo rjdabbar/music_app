@@ -3,9 +3,9 @@
 <label for="track_album">Album:</label>
 <select id="track_album" name="track[album_id]">
   <option value=""></option>
-  <% @albums.each do |album| %>
+  <% Album.all.each do |album| %>
     <option value="<%= album.id %>"
-      <%= "selected" if album = @album %>>
+      <%= "selected" if album = @track.album %>>
       <%= album.name %>
     </option>
   <% end %>

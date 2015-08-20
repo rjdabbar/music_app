@@ -1,5 +1,5 @@
 module TracksHelper
-
+  include ERB::Util
   def delete_track
     <<-HTML.html_safe
       <form action="#{track_url(@track)}" method="post">

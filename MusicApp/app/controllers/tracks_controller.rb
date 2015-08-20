@@ -2,9 +2,7 @@ class TracksController < ApplicationController
   before_action :ensure_user_signed_in
 
   def new
-    @track = Track.new
-    @album = Album.find(params[:album_id])
-    @albums = Album.all
+    @track = Track.new(album_id: params[:album_id])
   end
 
   def create
@@ -31,7 +29,6 @@ class TracksController < ApplicationController
   def edit
     @track = Track.find(params[:id])
     @album = @track.album
-    @albums = Album.all
   end
 
   def update

@@ -5,9 +5,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
-    @bands = Band.all
-    @band = Band.find(params[:band_id])
+    @album = Album.new(band_id: params[:band_id])
   end
 
   def create
@@ -22,8 +20,6 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find(params[:id])
-    @band = @album.band
-    @bands = Band.all
   end
 
   def update
@@ -49,7 +45,7 @@ class AlbumsController < ApplicationController
     params.require(:album).permit(:name, :style, :band_id)
   end
 
-  def gater_album_errors
+  def gather_album_errors
     flash.now[:errors] = @album.errors.full_messages
   end
 

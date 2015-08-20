@@ -1,6 +1,5 @@
 class NotesController < ApplicationController
-  def show
-  end
+  before_action :ensure_user_signed_in
 
   def new
     @note = Note.new
@@ -35,5 +34,9 @@ class NotesController < ApplicationController
 
   def gather_note_errors
     flash.now[:errors] = @note.errors.full_messages
+  end
+
+  def ensure_user_signed_in
+    redirect_to new_user_url unless signed_in?
   end
 end

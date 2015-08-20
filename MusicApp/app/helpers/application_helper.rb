@@ -12,9 +12,7 @@ module ApplicationHelper
   def flash_errors
     if flash.now[:errors]
       flash.now[:errors].map do |error|
-        <<-HTML.html_safe
-          #{error} <br>
-        HTML
+        "#{error} <br>".html_safe
       end.join
     end
   end

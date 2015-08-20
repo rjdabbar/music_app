@@ -1,4 +1,4 @@
-<h1>Add an album to <%= @band.name %>'s discography</h1>
+<h1>Add an album to <%= @album.band.name %>'s discography</h1>
 <%= flash_errors %>
 
 <form action="<%= albums_url %>" method="post">

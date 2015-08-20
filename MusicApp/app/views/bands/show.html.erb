@@ -3,6 +3,6 @@
   <% @band.albums.each do |album| %>
     <h2>Albums!</h2>
     <ul>
-      <li><%= album.name %></li>
+      <li><a href=" <%= album_url(album) %> "><%= album.name %></a></li>
     </ul>
     <% end %>

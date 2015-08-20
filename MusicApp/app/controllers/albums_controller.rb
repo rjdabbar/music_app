@@ -11,8 +11,13 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    fail
-    @album = Album.new()
+    @album = Album.new(album_params)
+    if @album.save
+      redirect_to album_url(@album)
+    else
+      flash.now[:errors] = @album.errors.full_messages
+      render :new
+    end
   end
 
   def edit
@@ -31,7 +36,7 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:name, :style)
+    params.require(:album).permit(:name, :style, :band_id)
   end
 
   def current_band

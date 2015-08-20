@@ -16,7 +16,7 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.includes(:notes).find(params[:id])
+    @track = Track.includes(notes: :user).find(params[:id])
     @note = Note.new
   end
 

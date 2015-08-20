@@ -1,4 +1,5 @@
 class TracksController < ApplicationController
+  before_action :ensure_user_signed_in
 
   def new
     @track = Track.new
@@ -52,4 +53,7 @@ class TracksController < ApplicationController
     flash.now[:errors] = @track.errors.full_messages
   end
 
+  def ensure_user_signed_in
+    redirect_to new_user_url unless signed_in?
+  end
 end

@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-
+  before_action :ensure_user_signed_in
   def show
     @album = Album.includes(:tracks, :band).find(params[:id])
   end
@@ -51,5 +51,9 @@ class AlbumsController < ApplicationController
 
   def gater_album_errors
     flash.now[:errors] = @album.errors.full_messages
+  end
+
+  def ensure_user_signed_in
+    redirect_to new_user_url unless signed_in?
   end
 end

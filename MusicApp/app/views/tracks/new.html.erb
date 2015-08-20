@@ -3,38 +3,6 @@
 <%= flash_errors %>
 
 <form action="<%= tracks_url %>" method="post">
-  <%= form_auth_token %>
-
-  <label for="track_album">Album:</label>
-  <select id="track_album" name="track[album_id]">
-    <option value=""></option>
-    <% @albums.each do |album| %>
-      <option value="<%= album.id %>"
-        <%= "selected" if album = @album %>>
-        <%= album.name %>
-      </option>
-    <% end %>
-  </select>
-
-  <br>
-
-  <label for="track_title">Title:</label>
-  <input type="textarea"
-         name="track[title]"
-         value="">
-
-  <br>
-
-  <label for="track_style">Styles:</label>
-  <label for="track_style_bonus">Bonus:</label>
-  <input id="track_style"
-         type="radio"
-         name="track[style]"
-         value="bonus">
-  <label for="track_style_regular">Regular:</label>
-  <input id="track_style_regular"
-         type="radio"
-         name="track[style]"
-         value="regular">
+  <%= render "track_form" %>
   <button>Create Track</button>
 </form>

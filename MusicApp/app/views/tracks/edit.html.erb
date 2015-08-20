@@ -1,0 +1,8 @@
+<h1>Edit <%= @track.title %></h1>
+<%= flash_errors %>
+
+<form class="" action="<%= track_url %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render "track_form" %>
+  <button>Edit Track</button>
+</form>

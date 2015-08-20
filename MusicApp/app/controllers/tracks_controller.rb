@@ -29,7 +29,7 @@ class TracksController < ApplicationController
   def edit
     @track = Track.find(params[:id])
     @album = @track.album
-    @albums = Albums.all
+    @albums = Album.all
   end
 
   def update

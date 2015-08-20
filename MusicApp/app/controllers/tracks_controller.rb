@@ -20,7 +20,9 @@ class TracksController < ApplicationController
   end
 
   def destroy
-
+    @track = Track.find(params[:id])
+    @track.destroy!
+    redirect_to album_url(@track.album)
   end
 
   def edit
